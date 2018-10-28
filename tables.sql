@@ -4,6 +4,9 @@ CREATE TABLE Aluno (
 	dt_nasc DATE,
 	nivel INT,
 	PRIMARY KEY (matricula)
+	-- FOREIGN KEY (matricula) REFERENCES professor(matricula),
+ 	-- FOREIGN KEY (matricula) REFERENCES projeto(codProjeto)
+
 );
 
 CREATE TABLE Professor (
@@ -24,7 +27,7 @@ CREATE TABLE Departamento (
 
 CREATE TABLE LinhaPesquisa (
 	codLinhaPesquisa INT NOT NULL,
-	subCnpq INT,
+	subCnpq INT NOT NULL,
 	nomeArea VARCHAR(10),
 	nomeSubArea VARCHAR(10),
 	PRIMARY KEY (codLinhaPesquisa),
@@ -32,11 +35,17 @@ CREATE TABLE LinhaPesquisa (
 );
 
 CREATE TABLE Laboratorio (
-	-- recurso: entidade fraca
 	codLaboratorio INT NOT NULL,
-	nome VARCHAR(15),
+	nome VARCHAR(20),
 	local VARCHAR(20),
 	PRIMARY KEY (codLaboratorio)
+);
+
+-- Recurso é entidade fraca de Laboratio
+CREATE TABLE Recurso (
+	codigo INT NOT NULL,
+	descricao VARCHAR(30)
+	
 );
 
 CREATE TABLE Projeto (
@@ -68,7 +77,7 @@ CREATE TABLE Publicacao (
 
 CREATE TABLE Patente (
 	codPatente INT NOT NULL,
-	numreg INT,
-	descricao varchar(20),
+	numReg INT,
+	descricao VARCHAR(20),
 	PRIMARY KEY (codPatente)
 );	
